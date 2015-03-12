@@ -11,10 +11,18 @@ namespace dotnet_jttt
         string textToCheck;
         string key;
 
+        public ConditionContainSubstring() { }
+
         public ConditionContainSubstring(string key, string text)
         {
             textToCheck = text;
             this.key = key;
+        }
+
+        public void SetParams(object key, object text)
+        {
+            textToCheck = (string)text;
+            this.key = (string)key;
         }
 
         public bool Check()

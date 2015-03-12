@@ -39,10 +39,11 @@ namespace dotnet_jttt
             doc.LoadHtml(htmlSource);
 
             var nodes = doc.DocumentNode.Descendants("img");
+            var cond = new ConditionContainSubstring();
 
             foreach (var node in nodes)
             {
-                var cond = new ConditionContainSubstring(key, (node.GetAttributeValue("alt", "")));
+                cond.SetParams(key, (node.GetAttributeValue("alt", "")));
                 if (cond.Check())
                 {
                     return DownloadImage(url + node.GetAttributeValue("src", ""));

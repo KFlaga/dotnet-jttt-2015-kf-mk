@@ -9,5 +9,6 @@ namespace dotnet_jttt
     public interface ICondition
     {
         bool Check();
+        void SetParams(object arg1, object arg2);
     }
 }
