@@ -36,6 +36,7 @@ namespace dotnet_jttt
                 return;
             }
             picbTest.Image = img; // dziala
+            img.Save("d:\\obrazek.jpg"); 
 
             EMailer mailer = new EMailer();
             mailer.SendMail(txbMail.Text, img);
