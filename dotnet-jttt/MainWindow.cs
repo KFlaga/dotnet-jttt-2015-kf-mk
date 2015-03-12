@@ -41,5 +41,15 @@ namespace dotnet_jttt
             EMailer mailer = new EMailer();
             mailer.SendMail(txbMail.Text, img);
         }
+
+        private void labURL_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labChooseCondition_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
