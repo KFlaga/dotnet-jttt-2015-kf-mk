@@ -13,14 +13,16 @@ namespace dotnet_jttt
 
         public ImageShower() { }
 
-        public void DoAction(string empty, object image)
+        // Tworzy nowe okienko z PictureBox'em w któym wyświetla się zadany obrazek
+        public void DoAction(object[] args)
         {
-            // Tworzy nowe okienko z PictureBox'em w któym wyświetla się zadany obrazek
+            Image image = (Image)args[1];
             Form picWindow = new Form();
             PictureBox picBox = new PictureBox();
-            picWindow.Size = ((Image)image).Size;
-            picBox.Size = ((Image)image).Size;
-            picBox.Image = (Image)image;
+            picWindow.AutoSize = true;
+            picWindow.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            picBox.Size = image.Size;
+            picBox.Image = image;
 
             picWindow.Controls.Add(picBox);
             picWindow.Show();

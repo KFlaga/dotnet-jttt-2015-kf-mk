@@ -39,7 +39,7 @@ namespace dotnet_jttt
             }
 
             // Sprawdzenie warunku i otrzymanie resultatu, np. obrazka gdy warunek spelniony
-            conditions[curCond].CheckCondition(diCondition.GetTextInput()[1], diCondition.GetTextInput()[0]);
+            conditions[curCond].CheckCondition(diCondition.GetTextInput());
             object res = conditions[curCond].GetResult();
 
             if (res == null)
@@ -49,7 +49,7 @@ namespace dotnet_jttt
             }
             
             // I wykonanie danej akcji
-            actions[curAction].DoAction(diAction.GetTextInput()[0], res);
+            actions[curAction].DoAction(new object[] { diAction.GetTextInput(), res} );
         }
 
         private void combChooseCondition_SelectedIndexChanged(object sender, EventArgs e)

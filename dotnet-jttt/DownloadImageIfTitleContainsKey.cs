@@ -14,6 +14,8 @@ namespace dotnet_jttt
     {
         string htmlSource;
         Image image;
+        string url;
+        string key;
 
         public DownloadImageIfTitleContainsKey()
         {
@@ -32,8 +34,10 @@ namespace dotnet_jttt
             }
         }
 
-        public void CheckCondition(string key, string url)
+        public void CheckCondition(object[] args)
         {
+            key = (string)args[1];
+            url = (string)args[0];
             htmlSource = GetPageHtml(url);
 
             HtmlDocument doc = new HtmlDocument();

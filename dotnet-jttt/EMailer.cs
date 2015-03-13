@@ -19,10 +19,10 @@ namespace dotnet_jttt
 
         }
 
-        public void DoAction(string email, object image)
+        public void DoAction(object[] args)
         {
-            adress = email;
-            img = (Image)image;
+            adress = ((List<string>)args[0])[0];
+            img = (Image)args[1];
         }
     }
 }
