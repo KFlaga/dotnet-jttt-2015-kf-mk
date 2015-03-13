@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace dotnet_jttt
 {
+    // W klasie tworzone będą obiekty DataInput dla odpowiednich warunków
     class DataInputCreator
     {
         DataInput sendEMail;
@@ -14,6 +15,7 @@ namespace dotnet_jttt
 
         public DataInputCreator()
         {
+            // Na start w konstruktorze tworzymy wszystkie DataInput'y dla wszystkich warunków/akcji
             sendEMail = new DataInput();
             sendEMail.SetTitle(new string[] {"Wyslij email z zalaczonym obrazkiem", "na podany adres email"});
             sendEMail.AddTextInput("Email");

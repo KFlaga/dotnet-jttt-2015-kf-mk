@@ -54,10 +54,10 @@
             this.mainLayout.Controls.Add(this.labChooseAction, 1, 3);
             this.mainLayout.Controls.Add(this.combChooseCondition, 1, 1);
             this.mainLayout.Controls.Add(this.combChooseAction, 1, 4);
-            this.mainLayout.Controls.Add(this.btnAccept, 1, 6);
             this.mainLayout.Controls.Add(this.diCondition, 1, 2);
             this.mainLayout.Controls.Add(this.diAction, 1, 5);
-            this.mainLayout.Location = new System.Drawing.Point(57, 12);
+            this.mainLayout.Controls.Add(this.btnAccept, 1, 6);
+            this.mainLayout.Location = new System.Drawing.Point(12, 12);
             this.mainLayout.MinimumSize = new System.Drawing.Size(500, 405);
             this.mainLayout.Name = "mainLayout";
             this.mainLayout.RowCount = 7;
@@ -179,9 +179,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 441);
+            this.ClientSize = new System.Drawing.Size(564, 441);
             this.Controls.Add(this.mainLayout);
-            this.MinimumSize = new System.Drawing.Size(640, 480);
+            this.MinimumSize = new System.Drawing.Size(580, 480);
             this.Name = "MainWindow";
             this.Text = "JTTT";
             this.mainLayout.ResumeLayout(false);

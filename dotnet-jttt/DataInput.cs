@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace dotnet_jttt
 {
+    // Kontrolka służca za interfejs do wpisywania danych dla danego warunku/akcji
+    // Można dodawać wiele TextBox'ów i pobrać co jest w nich wprowadzone
     public partial class DataInput : UserControl
     {
         List<TextBox> txbs;
@@ -27,14 +29,18 @@ namespace dotnet_jttt
             txbTitle.Lines = lines;
         }
 
+        // Dodaje TextBox'a i tabliczke poniżej ostatniej ( lub tytułu )
+        // Zwiększa przy tym rozmiar całej kontrolki
         public void AddTextInput(string label)
         {
+            this.Size = new Size(this.Size.Width, this.Size.Height + 30);
+
             TextBox tbx = new TextBox();
             tbx.Anchor = System.Windows.Forms.AnchorStyles.None;
             tbx.Name = "txb" + label;
             tbx.Size = new Size(340, 20);
             tbx.Text = "";
-            tbx.Location = new Point(50,45 + txbs.Count*40);
+            tbx.Location = new Point(50, 45 + txbs.Count*40);
 
             Label lab = new Label();
             lab.Anchor = AnchorStyles.None;
@@ -43,7 +49,6 @@ namespace dotnet_jttt
             lab.Text = label;
             lab.Location = new Point(5, 45 + labels.Count * 40);
 
-            this.Size = new Size(this.Size.Width, this.Size.Height + 30);
             this.Controls.Add(tbx);
             this.Controls.Add(lab);
 
@@ -53,6 +58,9 @@ namespace dotnet_jttt
 
         public void RemoveLastRow()
         {
+            if (txbs.Count == 0)
+                return;
+
             this.Size = new Size(this.Size.Width, this.Size.Height - 30);
             this.Controls.Remove(txbs.Last());
             this.Controls.Remove(labels.Last());

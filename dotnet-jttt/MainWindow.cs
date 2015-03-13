@@ -38,7 +38,7 @@ namespace dotnet_jttt
                 return;
             }
 
-            // Pierw sprawdzenie warunku
+            // Sprawdzenie warunku i otrzymanie resultatu, np. obrazka gdy warunek spelniony
             conditions[curCond].CheckCondition(diCondition.GetTextInput()[1], diCondition.GetTextInput()[0]);
             object res = conditions[curCond].GetResult();
 
@@ -47,12 +47,15 @@ namespace dotnet_jttt
                 MessageBox.Show("Warunek nie spelniony\n");
                 return;
             }
-
+            
+            // I wykonanie danej akcji
             actions[curAction].DoAction(diAction.GetTextInput()[0], res);
         }
 
         private void combChooseCondition_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Wraz ze zmiana indeksu comba zmienia sie numer warunku, a takze ustawiany jest nowy
+            // interfejs dla danego warunku
             curCond = combChooseCondition.SelectedIndex;
             mainLayout.Controls.Remove(diCondition);
             diCondition = diCreator.GetConditionInput(curCond);
@@ -69,6 +72,7 @@ namespace dotnet_jttt
 
         private void InitConditionsAndActions()
         {
+            // Tworzymy listę wszytkich warunków i akcji - porządek dodawania musi być ten sam co w combach
             conditions = new List<IConditionWithResult>();
             actions = new List<IAction>();
 
