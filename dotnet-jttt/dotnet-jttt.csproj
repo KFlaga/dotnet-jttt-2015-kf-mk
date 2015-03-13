@@ -47,6 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataInput.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataInput.Designer.cs">
+      <DependentUpon>DataInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataInputCreator.cs" />
     <Compile Include="IAction.cs" />
     <Compile Include="ConditionContainSubstring.cs" />
     <Compile Include="EMailer.cs" />
@@ -62,6 +69,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DataInput.resx">
+      <DependentUpon>DataInput.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
