@@ -9,18 +9,20 @@ using System.Drawing;
 
 namespace dotnet_jttt
 {
-    class EMailer
+    class EMailer : IAction
     {
         string adress;
+        Image img;
 
         public EMailer()
         {
 
         }
 
-        public void SendMail(string adress, Image img)
+        public void DoAction(string email, object image)
         {
-
+            adress = email;
+            img = (Image)image;
         }
     }
 }

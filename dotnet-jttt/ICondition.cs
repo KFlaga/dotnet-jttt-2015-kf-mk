@@ -10,5 +10,6 @@ namespace dotnet_jttt
     {
         bool Check();
         void SetParams(object arg1, object arg2);
+
     }
 }

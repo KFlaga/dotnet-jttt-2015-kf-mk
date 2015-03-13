@@ -10,17 +10,17 @@ using System.Drawing;
 
 namespace dotnet_jttt
 {
-    class ImgDownloader
+    class DownloadImageIfTitleContainsKey : IConditionWithResult
     {
-        string url;
         string htmlSource;
+        Image image;
 
-        public ImgDownloader(string url)
+        public DownloadImageIfTitleContainsKey()
         {
-            this.url = url;
+            
         }
 
-        private string GetPageHtml()
+        private string GetPageHtml(string url)
         {
             using (WebClient wc = new WebClient())
             {
@@ -31,9 +31,9 @@ namespace dotnet_jttt
             }
         }
 
-        public Image DownloadIfKeyIsInTitle(string key)
+        public void CheckCondition(string key, string url)
         {
-            htmlSource = GetPageHtml();
+            htmlSource = GetPageHtml(url);
 
             HtmlDocument doc = new HtmlDocument();
             doc.LoadHtml(htmlSource);
@@ -46,14 +46,13 @@ namespace dotnet_jttt
                 cond.SetParams(key, (node.GetAttributeValue("alt", "")));
                 if (cond.Check())
                 {
-                    return DownloadImage(url + node.GetAttributeValue("src", ""));
+                    DownloadImage((string)url + node.GetAttributeValue("src", ""));
+                    return;
                 }
             }
-
-            return null;
         }
 
-        private Image DownloadImage(string src)
+        private void DownloadImage(string src)
         {
             byte[] imageData;
             using (WebClient wc = new WebClient())
@@ -64,8 +63,12 @@ namespace dotnet_jttt
             MemoryStream ms = new MemoryStream(imageData);
             Image image = Image.FromStream(ms);
 
-            return image;
+            this.image = image;
         }
 
+        public object GetResult()
+        {
+            return image;
+        }
     }
 }

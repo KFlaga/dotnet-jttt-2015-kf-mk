@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace dotnet_jttt
 {
-    interface Action<paramType>
+    interface IAction
     {
+        void DoAction(string arg1, object arg2);
     }
 }
