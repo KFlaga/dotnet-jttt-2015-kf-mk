@@ -33,20 +33,19 @@ namespace dotnet_jttt
             tbx.Anchor = System.Windows.Forms.AnchorStyles.None;
             tbx.Name = "txb" + label;
             tbx.Size = new Size(340, 20);
-            tbx.Text = "Wpisz tu cos";
+            tbx.Text = "";
+            tbx.Location = new Point(50,45 + txbs.Count*40);
 
             Label lab = new Label();
             lab.Anchor = AnchorStyles.None;
             lab.AutoSize = true;
             lab.Name = "lab" + label;
             lab.Text = label;
+            lab.Location = new Point(5, 45 + labels.Count * 40);
 
             this.Size = new Size(this.Size.Width, this.Size.Height + 30);
-            mainLayout.Size = new Size(mainLayout.Size.Width, mainLayout.Size.Height + 30);
-            mainLayout.RowCount = mainLayout.RowCount + 1;
-            this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            mainLayout.Controls.Add(lab, 0, mainLayout.RowCount - 1);
-            mainLayout.Controls.Add(tbx, 0, mainLayout.RowCount - 1);
+            this.Controls.Add(tbx);
+            this.Controls.Add(lab);
 
             txbs.Add(tbx);
             labels.Add(lab);
@@ -55,10 +54,8 @@ namespace dotnet_jttt
         public void RemoveLastRow()
         {
             this.Size = new Size(this.Size.Width, this.Size.Height - 30);
-            mainLayout.Size = new Size(mainLayout.Size.Width, mainLayout.Size.Height - 30);
-            mainLayout.Controls.Remove(txbs.Last());
-            mainLayout.Controls.Remove(labels.Last());
-            mainLayout.RowCount = mainLayout.RowCount - 1;
+            this.Controls.Remove(txbs.Last());
+            this.Controls.Remove(labels.Last());
 
             txbs.RemoveAt(txbs.Count - 1);
             labels.RemoveAt(labels.Count - 1);
@@ -72,6 +69,20 @@ namespace dotnet_jttt
                 input[i] = txbs[i].Text;
             }
             return input;
+        }
+
+        public bool CheckIfAllFieldsAreFilled()
+        {
+            if (txbs.Count == 0)
+                return true;
+
+            foreach (TextBox txb in txbs)
+            {
+                if (txb.Text == "")
+                    return false;
+            }
+
+            return true;
         }
     }
 }

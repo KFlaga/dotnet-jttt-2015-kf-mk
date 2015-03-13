@@ -28,39 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.txbTitle = new System.Windows.Forms.TextBox();
-            this.mainLayout.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // mainLayout
-            // 
-            this.mainLayout.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.mainLayout.ColumnCount = 2;
-            this.mainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.mainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.mainLayout.Controls.Add(this.txbTitle, 1, 0);
-            this.mainLayout.Location = new System.Drawing.Point(5, 5);
-            this.mainLayout.Margin = new System.Windows.Forms.Padding(5);
-            this.mainLayout.Name = "mainLayout";
-            this.mainLayout.RowCount = 1;
-            this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.mainLayout.Size = new System.Drawing.Size(400, 45);
-            this.mainLayout.TabIndex = 0;
             // 
             // txbTitle
             // 
-            this.txbTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txbTitle.BackColor = System.Drawing.SystemColors.Info;
             this.txbTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txbTitle.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.txbTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.txbTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txbTitle.Location = new System.Drawing.Point(55, 3);
+            this.txbTitle.Location = new System.Drawing.Point(0, 0);
+            this.txbTitle.MaximumSize = new System.Drawing.Size(410, 45);
             this.txbTitle.Multiline = true;
             this.txbTitle.Name = "txbTitle";
             this.txbTitle.ReadOnly = true;
-            this.txbTitle.Size = new System.Drawing.Size(330, 39);
+            this.txbTitle.Size = new System.Drawing.Size(410, 39);
             this.txbTitle.TabIndex = 14;
             this.txbTitle.Text = "empty\r\nempty";
             this.txbTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -71,20 +54,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.mainLayout);
+            this.Controls.Add(this.txbTitle);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "DataInput";
             this.Size = new System.Drawing.Size(410, 55);
-            this.mainLayout.ResumeLayout(false);
-            this.mainLayout.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel mainLayout;
         private System.Windows.Forms.TextBox txbTitle;
+
 
     }
 }

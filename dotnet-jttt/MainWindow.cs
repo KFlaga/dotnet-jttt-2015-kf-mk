@@ -16,27 +16,30 @@ namespace dotnet_jttt
         List<IAction> actions;
         int curCond;
         int curAction;
+        DataInputCreator diCreator;
 
         public MainWindow()
         {
             InitializeComponent();
+            diCreator = new DataInputCreator();
+
+            InitConditionsAndActions();
 
             this.combChooseAction.SelectedIndex = 0;
             this.combChooseCondition.SelectedIndex = 0;
-
-            InitConditionsAndActions();
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            if (txbURL.Text == "" || txbKey.Text == "" || txbMail.Text == "")
+            // Sprawdzenie czy nie ma pustych miejsc
+            if (!diCondition.CheckIfAllFieldsAreFilled() || !diAction.CheckIfAllFieldsAreFilled())
             {
-                MessageBox.Show("Należy podać wartości we wszystkich lukach\n");
+                MessageBox.Show("Należy wypełnić wszystkie pola");
                 return;
             }
 
             // Pierw sprawdzenie warunku
-            conditions[curCond].CheckCondition(txbKey.Text, txbURL.Text);
+            conditions[curCond].CheckCondition(diCondition.GetTextInput()[1], diCondition.GetTextInput()[0]);
             object res = conditions[curCond].GetResult();
 
             if (res == null)
@@ -45,17 +48,23 @@ namespace dotnet_jttt
                 return;
             }
 
-            actions[curAction].DoAction(txbMail.Text, res);
+            actions[curAction].DoAction(diAction.GetTextInput()[0], res);
         }
 
         private void combChooseCondition_SelectedIndexChanged(object sender, EventArgs e)
         {
             curCond = combChooseCondition.SelectedIndex;
+            mainLayout.Controls.Remove(diCondition);
+            diCondition = diCreator.GetConditionInput(curCond);
+            mainLayout.Controls.Add(diCondition, 1, 2);
         }
 
         private void combChooseAction_SelectedIndexChanged(object sender, EventArgs e)
         {
             curAction = combChooseAction.SelectedIndex;
+            mainLayout.Controls.Remove(diAction);
+            diAction = diCreator.GetActionInput(curAction);
+            mainLayout.Controls.Add(diAction, 1, 5);
         }
 
         private void InitConditionsAndActions()
