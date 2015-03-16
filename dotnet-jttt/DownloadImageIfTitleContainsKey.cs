@@ -34,10 +34,10 @@ namespace dotnet_jttt
             }
         }
 
-        public void CheckCondition(object[] args)
+        public void CheckCondition(string[] args)
         {
-            key = (string)args[1];
-            url = (string)args[0];
+            key = args[1];
+            url = args[0];
             htmlSource = GetPageHtml(url);
 
             HtmlDocument doc = new HtmlDocument();

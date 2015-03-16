@@ -10,7 +10,7 @@ namespace dotnet_jttt
     // Oprócz sprawdzenia warunku klasa ta będzie musiała wykonać inne czynności
     interface IConditionWithResult // trochę kiepska nazwa, ale nie mam pomyslu jak nazwac
     {
-        void CheckCondition(object[] arguments);
+        void CheckCondition(string[] arguments);
         object GetResult();
     }
 }

@@ -61,6 +61,7 @@
     <Compile Include="IConditionWithResult.cs" />
     <Compile Include="DownloadImageIfTitleContainsKey.cs" />
     <Compile Include="ImageShower.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>

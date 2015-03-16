@@ -14,9 +14,9 @@ namespace dotnet_jttt
         public ImageShower() { }
 
         // Tworzy nowe okienko z PictureBox'em w któym wyświetla się zadany obrazek
-        public void DoAction(object[] args)
+        public void DoAction(string[] input, object img)
         {
-            Image image = (Image)args[1];
+            Image image = (Image)img;
             Form picWindow = new Form();
             PictureBox picBox = new PictureBox();
             picWindow.AutoSize = true;

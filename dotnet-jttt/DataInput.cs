@@ -24,6 +24,8 @@ namespace dotnet_jttt
             labels = new List<Label>();
         }
 
+        // Ustawia tytuł kontrolki
+        // W argumencie tablica stringów - każda komórka stanowi 1 linijkę
         public void SetTitle(string[] lines)
         {
             txbTitle.Lines = lines;

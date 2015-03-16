@@ -9,6 +9,6 @@ namespace dotnet_jttt
     // Interfejs dla klas wykonująch akcję gdy zadany warunek jest spełniony
     interface IAction
     {
-        void DoAction(object[] args);
+        void DoAction(string[] input, object condObject);
     }
 }

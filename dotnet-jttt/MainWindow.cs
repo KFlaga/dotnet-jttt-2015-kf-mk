@@ -20,6 +20,7 @@ namespace dotnet_jttt
 
         public MainWindow()
         {
+            Logger.Instance.AddLog("Start aplikacji");
             InitializeComponent();
             diCreator = new DataInputCreator();
 
@@ -31,6 +32,7 @@ namespace dotnet_jttt
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
+            Logger.Instance.AddLog("Przycisk start wcisniety");
             // Sprawdzenie czy nie ma pustych miejsc
             if (!diCondition.CheckIfAllFieldsAreFilled() || !diAction.CheckIfAllFieldsAreFilled())
             {
@@ -41,6 +43,7 @@ namespace dotnet_jttt
             // Sprawdzenie warunku i otrzymanie resultatu, np. obrazka gdy warunek spelniony
             conditions[curCond].CheckCondition(diCondition.GetTextInput());
             object res = conditions[curCond].GetResult();
+            Logger.Instance.AddLog("Warunek sprawdzony");
 
             if (res == null)
             {
@@ -49,7 +52,8 @@ namespace dotnet_jttt
             }
             
             // I wykonanie danej akcji
-            actions[curAction].DoAction(new object[] { diAction.GetTextInput(), res} );
+            actions[curAction].DoAction(diAction.GetTextInput(), res );
+            Logger.Instance.AddLog("Akcja wykonana");
         }
 
         private void combChooseCondition_SelectedIndexChanged(object sender, EventArgs e)
@@ -60,6 +64,7 @@ namespace dotnet_jttt
             mainLayout.Controls.Remove(diCondition);
             diCondition = diCreator.GetConditionInput(curCond);
             mainLayout.Controls.Add(diCondition, 1, 2);
+            Logger.Instance.AddLog("Warunek zmieniony na: "+curCond.ToString());
         }
 
         private void combChooseAction_SelectedIndexChanged(object sender, EventArgs e)
@@ -68,6 +73,7 @@ namespace dotnet_jttt
             mainLayout.Controls.Remove(diAction);
             diAction = diCreator.GetActionInput(curAction);
             mainLayout.Controls.Add(diAction, 1, 5);
+            Logger.Instance.AddLog("Akcja zmieniona na: " + curAction.ToString());
         }
 
         private void InitConditionsAndActions()
