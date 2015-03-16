@@ -59,6 +59,7 @@ namespace dotnet_jttt
 
         private void DownloadImage(string src)
         {
+            Logger.Instance.AddLog("Ściąganie obrazka");
             // Do image data ściągamy tablicę bitów, które powinny być obrazkiem
             // z podanego źródła
             byte[] imageData;

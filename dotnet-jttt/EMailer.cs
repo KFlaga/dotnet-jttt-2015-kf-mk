@@ -34,17 +34,12 @@ namespace dotnet_jttt
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587); // server googla i port
             client.Credentials = new NetworkCredential("emailertestspam@gmail.com", "dotnetpass");
             client.EnableSsl = true;
-            //client.SendCompleted += client_SendCompleted;
             client.Send(msg);
             Logger.Instance.AddLog("Próba wysłania wiadomości");
         }
 
         void client_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            if (e.Cancelled)
-            {
-                MessageBox.Show("Send canceled.");
-            }
             if (e.Error != null)
             {
                 MessageBox.Show(e.Error.ToString());

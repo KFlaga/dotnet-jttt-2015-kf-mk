@@ -12,15 +12,14 @@ namespace dotnet_jttt
 {
     public partial class MainWindow : Form
     {
-        List<IConditionWithResult> conditions;
-        List<IAction> actions;
+        List<IConditionWithResult> conditions; // Lista warunków do wyboru
+        List<IAction> actions; // Lista akcji do wyboru
         int curCond;
         int curAction;
-        DataInputCreator diCreator;
+        DataInputCreator diCreator; // Tworzy interfejsy do wpisywania dla poszczególnych warunków/akcji
 
         public MainWindow()
         {
-            Logger.Instance.AddLog("Start aplikacji");
             InitializeComponent();
             diCreator = new DataInputCreator();
 
@@ -28,6 +27,8 @@ namespace dotnet_jttt
 
             this.combChooseAction.SelectedIndex = 0;
             this.combChooseCondition.SelectedIndex = 0;
+
+            Logger.Instance.AddLog("Inicjalizacja zakończona");
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
@@ -43,7 +44,6 @@ namespace dotnet_jttt
             // Sprawdzenie warunku i otrzymanie resultatu, np. obrazka gdy warunek spelniony
             conditions[curCond].CheckCondition(diCondition.GetTextInput());
             object res = conditions[curCond].GetResult();
-            Logger.Instance.AddLog("Warunek sprawdzony");
 
             if (res == null)
             {
@@ -53,7 +53,6 @@ namespace dotnet_jttt
             
             // I wykonanie danej akcji
             actions[curAction].DoAction(diAction.GetTextInput(), res );
-            Logger.Instance.AddLog("Akcja wykonana");
         }
 
         private void combChooseCondition_SelectedIndexChanged(object sender, EventArgs e)

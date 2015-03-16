@@ -26,6 +26,7 @@ namespace dotnet_jttt
 
             picWindow.Controls.Add(picBox);
             picWindow.Show();
+            Logger.Instance.AddLog("Wyświetlono obrazek");
         }
     }
 }
