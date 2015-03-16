@@ -21,43 +21,41 @@ namespace dotnet_jttt
 
         }
 
-        public void DoAction(string[] input, object image) // Nie chce wysylac
+        public void DoAction(string[] input, object image)
         {
             adress = input[0];
             img = (Image)image;
 
-            MemoryStream imgStream = new MemoryStream();
-            img.Save(imgStream, img.RawFormat);
-
-            MailMessage msg = new System.Net.Mail.MailMessage("emailertestspam@gmail.com", "emailertestspam@gmail.com", "test", "test emailera");
-            Attachment att = new Attachment(imgStream, "obrazek");
+            MailMessage msg = new System.Net.Mail.MailMessage("emailertestspam@gmail.com", adress, "test", "test emailera");
+            img.Save("obrazek.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+            Attachment att = new Attachment("obrazek.jpg");
             msg.Attachments.Add(att);
 
-            SmtpClient client = new SmtpClient("smtp.gmail.com", 465); // server googla i port
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587); // server googla i port
             client.Credentials = new NetworkCredential("emailertestspam@gmail.com", "dotnetpass");
             client.EnableSsl = true;
-            client.SendCompleted += client_SendCompleted;
-            string token = "test";
-            client.SendAsync(msg, token);
-
+            //client.SendCompleted += client_SendCompleted;
+            client.Send(msg);
+            Logger.Instance.AddLog("Próba wysłania wiadomości");
         }
 
         void client_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            string token = (string)e.UserState;
-
             if (e.Cancelled)
             {
-                MessageBox.Show(token + ": Send canceled.");
+                MessageBox.Show("Send canceled.");
             }
             if (e.Error != null)
             {
-                MessageBox.Show(token + ": " + e.Error.ToString());
+                MessageBox.Show(e.Error.ToString());
             }
             else
             {
+                Logger.Instance.AddLog("Wysłanie wiadomości powiodło się");
                 MessageBox.Show("Message sent.");
+                return;
             }
+            Logger.Instance.AddLog("Wysłanie wiadomości nie powiodło się");
         }
     }
 }
