@@ -14,6 +14,7 @@ namespace dotnet_jttt
         [STAThread]
         static void Main()
         {
+            Logger.Instance.AddLog("Start aplikacji");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindow());

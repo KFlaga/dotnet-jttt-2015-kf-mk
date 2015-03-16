@@ -14,6 +14,8 @@ namespace dotnet_jttt
     {
         string htmlSource;
         Image image;
+        string url;
+        string key;
 
         public DownloadImageIfTitleContainsKey()
         {
@@ -22,6 +24,7 @@ namespace dotnet_jttt
 
         private string GetPageHtml(string url)
         {
+            // Pobiera źródło strony
             using (WebClient wc = new WebClient())
             {
                 byte[] data = wc.DownloadData(url);
@@ -31,20 +34,22 @@ namespace dotnet_jttt
             }
         }
 
-        public void CheckCondition(string key, string url)
+        public void CheckCondition(string[] args)
         {
+            key = args[1];
+            url = args[0];
             htmlSource = GetPageHtml(url);
 
             HtmlDocument doc = new HtmlDocument();
             doc.LoadHtml(htmlSource);
 
-            var nodes = doc.DocumentNode.Descendants("img");
+            var nodes = doc.DocumentNode.Descendants("img"); // W nodes mamy wszystkie węzły 'img' opisujące obrazki
             var cond = new ConditionContainSubstring();
 
             foreach (var node in nodes)
             {
                 cond.SetParams(key, (node.GetAttributeValue("alt", "")));
-                if (cond.Check())
+                if (cond.Check()) // Sprawdzenie czy opis obrazka zawiera klucz
                 {
                     DownloadImage((string)url + node.GetAttributeValue("src", ""));
                     return;
@@ -54,12 +59,16 @@ namespace dotnet_jttt
 
         private void DownloadImage(string src)
         {
+            Logger.Instance.AddLog("Ściąganie obrazka");
+            // Do image data ściągamy tablicę bitów, które powinny być obrazkiem
+            // z podanego źródła
             byte[] imageData;
             using (WebClient wc = new WebClient())
             {
                 imageData = wc.DownloadData(src);
             }
 
+            // Aby przerobić tablicę bitów na obrazek stosujemy MemoryStream
             MemoryStream ms = new MemoryStream(imageData);
             Image image = Image.FromStream(ms);
 

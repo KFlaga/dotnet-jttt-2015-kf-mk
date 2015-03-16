@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace dotnet_jttt
 {
+    // Interfejs dla klasy, która zwraca jakiś obiekt gdy warunek jest spełniony
+    // Oprócz sprawdzenia warunku klasa ta będzie musiała wykonać inne czynności
     interface IConditionWithResult // trochę kiepska nazwa, ale nie mam pomyslu jak nazwac
     {
-        //ICondition Condition;
-        void CheckCondition(string arg1, string arg2);
+        void CheckCondition(string[] arguments);
         object GetResult();
     }
 }
